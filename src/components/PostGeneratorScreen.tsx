@@ -1,7 +1,11 @@
 import React from 'react';
 import { Edit3, Mic, FileText, Youtube, Link, Sparkles } from 'lucide-react';
 
-const PostGeneratorScreen: React.FC = () => {
+interface PostGeneratorScreenProps {
+  onSelectSubScreen: (subScreen: string) => void;
+}
+
+const PostGeneratorScreen: React.FC<PostGeneratorScreenProps> = ({ onSelectSubScreen }) => {
   const templates = [
     {
       title: "Share your learnings from a book",
@@ -49,7 +53,10 @@ const PostGeneratorScreen: React.FC = () => {
       <div className="mb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           {/* Generate Post from Scratch */}
-          <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200 cursor-pointer">
+          <div 
+            onClick={() => onSelectSubScreen('generate-from-scratch')}
+            className="bg-white rounded-lg p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200 cursor-pointer"
+          >
             <div className="flex items-start space-x-4">
               <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
                 <Edit3 className="w-6 h-6 text-gray-600" />
@@ -64,7 +71,10 @@ const PostGeneratorScreen: React.FC = () => {
           </div>
 
           {/* Generate post from audio */}
-          <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200 cursor-pointer">
+          <div 
+            onClick={() => onSelectSubScreen('generate-from-audio')}
+            className="bg-white rounded-lg p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200 cursor-pointer"
+          >
             <div className="flex items-start space-x-4">
               <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
                 <Mic className="w-6 h-6 text-orange-600" />
@@ -85,7 +95,10 @@ const PostGeneratorScreen: React.FC = () => {
         <h2 className="text-xl font-semibold text-gray-900 mb-6">Repurpose Content</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Generate a post from a PDF */}
-          <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200 cursor-pointer">
+          <div 
+            onClick={() => onSelectSubScreen('generate-from-pdf')}
+            className="bg-white rounded-lg p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200 cursor-pointer"
+          >
             <div className="flex items-start space-x-4">
               <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
                 <FileText className="w-6 h-6 text-purple-600" />
@@ -100,7 +113,10 @@ const PostGeneratorScreen: React.FC = () => {
           </div>
 
           {/* Generate a post from a Youtube video */}
-          <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200 cursor-pointer">
+          <div 
+            onClick={() => onSelectSubScreen('generate-from-youtube')}
+            className="bg-white rounded-lg p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200 cursor-pointer"
+          >
             <div className="flex items-start space-x-4">
               <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
                 <Youtube className="w-6 h-6 text-red-600" />
@@ -115,7 +131,10 @@ const PostGeneratorScreen: React.FC = () => {
           </div>
 
           {/* Generate a post from an article */}
-          <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200 cursor-pointer">
+          <div 
+            onClick={() => onSelectSubScreen('generate-from-article')}
+            className="bg-white rounded-lg p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200 cursor-pointer"
+          >
             <div className="flex items-start space-x-4">
               <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
                 <Link className="w-6 h-6 text-teal-600" />
@@ -130,7 +149,10 @@ const PostGeneratorScreen: React.FC = () => {
           </div>
 
           {/* Format your content */}
-          <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200 cursor-pointer">
+          <div 
+            onClick={() => onSelectSubScreen('format-content')}
+            className="bg-white rounded-lg p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200 cursor-pointer"
+          >
             <div className="flex items-start space-x-4">
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                 <Sparkles className="w-6 h-6 text-blue-600" />
@@ -153,6 +175,7 @@ const PostGeneratorScreen: React.FC = () => {
           {templates.map((template, index) => (
             <div
               key={index}
+              onClick={() => onSelectSubScreen(`template-${index}`)}
               className={`${template.bgColor} rounded-lg p-6 hover:shadow-md transition-shadow duration-200 cursor-pointer border border-gray-100`}
             >
               <h3 className={`text-lg font-semibold ${template.textColor} mb-3`}>

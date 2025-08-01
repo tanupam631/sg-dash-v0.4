@@ -6,12 +6,14 @@ import PostComposer from './components/PostComposer';
 import SwipeFilesScreen from './components/SwipeFilesScreen';
 import EngageScreen from './components/EngageScreen';
 import PostGeneratorScreen from './components/PostGeneratorScreen';
+import GeneratePostFromScratchScreen from './components/GeneratePostFromScratchScreen';
 
 function App() {
   const [activeMenuItem, setActiveMenuItem] = React.useState('dashboard');
   const [showWritePostModal, setShowWritePostModal] = React.useState(false);
   const [showPostComposer, setShowPostComposer] = React.useState(false);
   const [composerMode, setComposerMode] = React.useState<'manual' | 'repurpose' | 'carousel' | 'voice-notes'>('manual');
+  const [postGeneratorSubScreen, setPostGeneratorSubScreen] = React.useState<string>('main');
 
   const handleWritePostClick = () => {
     setShowWritePostModal(true);
@@ -29,6 +31,14 @@ function App() {
 
   const handleComposerClose = () => {
     setShowPostComposer(false);
+  };
+
+  const handlePostGeneratorSubScreenSelect = (subScreen: string) => {
+    setPostGeneratorSubScreen(subScreen);
+  };
+
+  const handleBackFromPostGeneratorSubScreen = () => {
+    setPostGeneratorSubScreen('main');
   };
 
   const tutorials = [
@@ -219,7 +229,15 @@ function App() {
         )}
         
         {!showPostComposer && activeMenuItem === 'post-generator' && (
-          <PostGeneratorScreen />
+          <>
+            {postGeneratorSubScreen === 'main' && (
+              <PostGeneratorScreen onSelectSubScreen={handlePostGeneratorSubScreenSelect} />
+            )}
+            {postGeneratorSubScreen === 'generate-from-scratch' && (
+              <GeneratePostFromScratchScreen onBack={handleBackFromPostGeneratorSubScreen} />
+            )}
+            {/* Add other sub-screens here as needed */}
+          </>
         )}
         
         {showPostComposer && (
