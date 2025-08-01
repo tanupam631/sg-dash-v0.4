@@ -9,6 +9,7 @@ import PostGeneratorScreen from './components/PostGeneratorScreen';
 import GeneratePostFromScratchScreen from './components/GeneratePostFromScratchScreen';
 import GeneratePostFromPDFScreen from './components/GeneratePostFromPDFScreen';
 import GeneratePostFromYoutubeScreen from './components/GeneratePostFromYoutubeScreen';
+import GeneratePostFromArticleScreen from './components/GeneratePostFromArticleScreen';
 
 function App() {
   const [activeMenuItem, setActiveMenuItem] = React.useState('dashboard');
@@ -243,6 +244,9 @@ function App() {
             )}
             {postGeneratorSubScreen === 'generate-from-youtube' && (
               <GeneratePostFromYoutubeScreen onBack={handleBackFromPostGeneratorSubScreen} />
+            )}
+            {postGeneratorSubScreen === 'generate-from-article' && (
+              <GeneratePostFromArticleScreen onBack={handleBackFromPostGeneratorSubScreen} />
             )}
             {/* Add other sub-screens here as needed */}
           </>
