@@ -7,6 +7,7 @@ import SwipeFilesScreen from './components/SwipeFilesScreen';
 import EngageScreen from './components/EngageScreen';
 import PostGeneratorScreen from './components/PostGeneratorScreen';
 import GeneratePostFromScratchScreen from './components/GeneratePostFromScratchScreen';
+import GeneratePostFromPDFScreen from './components/GeneratePostFromPDFScreen';
 
 function App() {
   const [activeMenuItem, setActiveMenuItem] = React.useState('dashboard');
@@ -235,6 +236,9 @@ function App() {
             )}
             {postGeneratorSubScreen === 'generate-from-scratch' && (
               <GeneratePostFromScratchScreen onBack={handleBackFromPostGeneratorSubScreen} />
+            )}
+            {postGeneratorSubScreen === 'generate-from-pdf' && (
+              <GeneratePostFromPDFScreen onBack={handleBackFromPostGeneratorSubScreen} />
             )}
             {/* Add other sub-screens here as needed */}
           </>
