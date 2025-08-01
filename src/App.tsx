@@ -8,6 +8,7 @@ import EngageScreen from './components/EngageScreen';
 import PostGeneratorScreen from './components/PostGeneratorScreen';
 import GeneratePostFromScratchScreen from './components/GeneratePostFromScratchScreen';
 import GeneratePostFromPDFScreen from './components/GeneratePostFromPDFScreen';
+import GeneratePostFromYoutubeScreen from './components/GeneratePostFromYoutubeScreen';
 
 function App() {
   const [activeMenuItem, setActiveMenuItem] = React.useState('dashboard');
@@ -239,6 +240,9 @@ function App() {
             )}
             {postGeneratorSubScreen === 'generate-from-pdf' && (
               <GeneratePostFromPDFScreen onBack={handleBackFromPostGeneratorSubScreen} />
+            )}
+            {postGeneratorSubScreen === 'generate-from-youtube' && (
+              <GeneratePostFromYoutubeScreen onBack={handleBackFromPostGeneratorSubScreen} />
             )}
             {/* Add other sub-screens here as needed */}
           </>
