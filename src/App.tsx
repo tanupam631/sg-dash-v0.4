@@ -11,6 +11,7 @@ import GeneratePostFromPDFScreen from './components/GeneratePostFromPDFScreen';
 import GeneratePostFromYoutubeScreen from './components/GeneratePostFromYoutubeScreen';
 import GeneratePostFromArticleScreen from './components/GeneratePostFromArticleScreen';
 import FormatContentScreen from './components/FormatContentScreen';
+import ShareBookLearningsScreen from './components/ShareBookLearningsScreen';
 
 function App() {
   const [activeMenuItem, setActiveMenuItem] = React.useState('dashboard');
@@ -251,6 +252,9 @@ function App() {
             )}
             {postGeneratorSubScreen === 'format-content' && (
               <FormatContentScreen onBack={handleBackFromPostGeneratorSubScreen} />
+            )}
+            {postGeneratorSubScreen === 'template-0' && (
+              <ShareBookLearningsScreen onBack={handleBackFromPostGeneratorSubScreen} />
             )}
             {/* Add other sub-screens here as needed */}
           </>
